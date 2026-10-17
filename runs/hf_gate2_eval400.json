@@ -1,0 +1,178 @@
+{
+  "trials": 400,
+  "all_rewrites": true,
+  "heldout_names": [
+    "Quinn",
+    "Ruth",
+    "Sven",
+    "Tessa",
+    "Uma",
+    "Vera",
+    "Wendy",
+    "Xavier",
+    "Yara",
+    "Zane",
+    "Aino",
+    "Bela",
+    "Cleo",
+    "Dara",
+    "Eero",
+    "Faye"
+  ],
+  "scores": {
+    "live": {
+      "strict_next_token_accuracy": 1.0,
+      "four_color_accuracy": 1.0,
+      "mean_true_color_margin": 6.8875
+    },
+    "erased": {
+      "strict_next_token_accuracy": 0.0525,
+      "four_color_accuracy": 0.2275,
+      "mean_true_color_margin": -0.752
+    },
+    "stale": {
+      "strict_next_token_accuracy": 0.0,
+      "four_color_accuracy": 0.0,
+      "mean_true_color_margin": -7.5636
+    },
+    "wrong_address": {
+      "strict_next_token_accuracy": 0.0,
+      "four_color_accuracy": 0.0,
+      "mean_true_color_margin": -7.6314
+    },
+    "oracle_code": {
+      "strict_next_token_accuracy": 1.0,
+      "four_color_accuracy": 1.0,
+      "mean_true_color_margin": 7.2748
+    },
+    "dictionary_context": {
+      "strict_next_token_accuracy": 0.7275,
+      "four_color_accuracy": 1.0,
+      "mean_true_color_margin": 6.757
+    }
+  },
+  "live_correct_stale_wrong_rate": 1.0,
+  "examples": [
+    {
+      "prompt": "Question: What is the color of Eero? Answer:",
+      "previous": "green",
+      "new": "yellow",
+      "color_predictions": {
+        "live": "yellow",
+        "erased": "red",
+        "stale": "green",
+        "wrong_address": "blue",
+        "oracle_code": "yellow",
+        "dictionary_context": "yellow"
+      }
+    },
+    {
+      "prompt": "Give only the color of Vera. Answer:",
+      "previous": "red",
+      "new": "yellow",
+      "color_predictions": {
+        "live": "yellow",
+        "erased": "blue",
+        "stale": "red",
+        "wrong_address": "blue",
+        "oracle_code": "yellow",
+        "dictionary_context": "yellow"
+      }
+    },
+    {
+      "prompt": "What color is Aino? Answer:",
+      "previous": "blue",
+      "new": "green",
+      "color_predictions": {
+        "live": "green",
+        "erased": "red",
+        "stale": "blue",
+        "wrong_address": "yellow",
+        "oracle_code": "green",
+        "dictionary_context": "green"
+      }
+    },
+    {
+      "prompt": "Question: What is the color of Cleo? Answer:",
+      "previous": "red",
+      "new": "blue",
+      "color_predictions": {
+        "live": "blue",
+        "erased": "blue",
+        "stale": "red",
+        "wrong_address": "green",
+        "oracle_code": "blue",
+        "dictionary_context": "blue"
+      }
+    },
+    {
+      "prompt": "What color is Yara? Answer:",
+      "previous": "green",
+      "new": "red",
+      "color_predictions": {
+        "live": "red",
+        "erased": "yellow",
+        "stale": "green",
+        "wrong_address": "yellow",
+        "oracle_code": "red",
+        "dictionary_context": "red"
+      }
+    },
+    {
+      "prompt": "What color is Vera? Answer:",
+      "previous": "green",
+      "new": "blue",
+      "color_predictions": {
+        "live": "blue",
+        "erased": "red",
+        "stale": "green",
+        "wrong_address": "yellow",
+        "oracle_code": "blue",
+        "dictionary_context": "blue"
+      }
+    },
+    {
+      "prompt": "Give only the color of Xavier. Answer:",
+      "previous": "blue",
+      "new": "red",
+      "color_predictions": {
+        "live": "red",
+        "erased": "blue",
+        "stale": "blue",
+        "wrong_address": "yellow",
+        "oracle_code": "red",
+        "dictionary_context": "red"
+      }
+    },
+    {
+      "prompt": "Give only the color of Xavier. Answer:",
+      "previous": "green",
+      "new": "yellow",
+      "color_predictions": {
+        "live": "yellow",
+        "erased": "blue",
+        "stale": "green",
+        "wrong_address": "blue",
+        "oracle_code": "yellow",
+        "dictionary_context": "yellow"
+      }
+    }
+  ],
+  "warning": "Four-color choice is an easier diagnostic. Dictionary context explicitly includes the fact.",
+  "configuration": {
+    "model": "Qwen/Qwen2.5-0.5B-Instruct",
+    "layer": 12,
+    "gain": 1.0,
+    "train_steps": null,
+    "trained_adapter_parameters": 3584,
+    "resident_bytes": 1024,
+    "frozen_pretrained_model": true,
+    "explicit_address_binder": true,
+    "values": [
+      "red",
+      "blue",
+      "green",
+      "yellow"
+    ]
+  }
+}
