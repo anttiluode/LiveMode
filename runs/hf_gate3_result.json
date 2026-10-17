@@ -1,0 +1,1086 @@
+{
+  "gate": 3,
+  "description": "Unpredictable late read after multiple independent overwrites",
+  "configuration": {
+    "slots": [
+      8,
+      16,
+      32
+    ],
+    "interfering_writes": [
+      10,
+      50,
+      100,
+      500
+    ],
+    "trials_per_seed_cell": 20,
+    "seeds": [
+      281828,
+      314159
+    ],
+    "trained_adapter_parameters": 3584,
+    "online_memory_bytes": 1024,
+    "pretrained_model_frozen": true,
+    "adapter_frozen": true,
+    "key_binder_supplied": true,
+    "four_color_codebook_supplied": true,
+    "query_selected_after_all_observations": true,
+    "model": "Qwen/Qwen2.5-0.5B-Instruct",
+    "layer": 12,
+    "gain": 1.0,
+    "checkpoint": "runs/hf_gate2_adapter.pt"
+  },
+  "cells": [
+    {
+      "slots": 8,
+      "delay": 10,
+      "summary": {
+        "trials": 40,
+        "scores": {
+          "live": {
+            "strict_next_token_accuracy": 0.9,
+            "four_color_accuracy": 0.9,
+            "mean_true_color_margin": 4.2891
+          },
+          "erased": {
+            "strict_next_token_accuracy": 0.125,
+            "four_color_accuracy": 0.325,
+            "mean_true_color_margin": -0.7797
+          },
+          "stale": {
+            "strict_next_token_accuracy": 0.0,
+            "four_color_accuracy": 0.0,
+            "mean_true_color_margin": -6.0641
+          },
+          "wrong_address": {
+            "strict_next_token_accuracy": 0.0,
+            "four_color_accuracy": 0.0,
+            "mean_true_color_margin": -6.8906
+          },
+          "last_only": {
+            "strict_next_token_accuracy": 0.175,
+            "four_color_accuracy": 0.175,
+            "mean_true_color_margin": -5.8109
+          },
+          "oracle_code": {
+            "strict_next_token_accuracy": 1.0,
+            "four_color_accuracy": 1.0,
+            "mean_true_color_margin": 7.2172
+          },
+          "dictionary_context": {
+            "strict_next_token_accuracy": 0.725,
+            "four_color_accuracy": 1.0,
+            "mean_true_color_margin": 6.7141
+          }
+        },
+        "live_correct_stale_wrong_rate": 0.9,
+        "live_correct_last_only_wrong_rate": 0.725
+      }
+    },
+    {
+      "slots": 8,
+      "delay": 50,
+      "summary": {
+        "trials": 40,
+        "scores": {
+          "live": {
+            "strict_next_token_accuracy": 0.975,
+            "four_color_accuracy": 0.975,
+            "mean_true_color_margin": 5.5906
+          },
+          "erased": {
+            "strict_next_token_accuracy": 0.075,
+            "four_color_accuracy": 0.3,
+            "mean_true_color_margin": -0.5512
+          },
+          "stale": {
+            "strict_next_token_accuracy": 0.025,
+            "four_color_accuracy": 0.025,
+            "mean_true_color_margin": -5.757
+          },
+          "wrong_address": {
+            "strict_next_token_accuracy": 0.0,
+            "four_color_accuracy": 0.0,
+            "mean_true_color_margin": -7.925
+          },
+          "last_only": {
+            "strict_next_token_accuracy": 0.325,
+            "four_color_accuracy": 0.325,
+            "mean_true_color_margin": -3.3703
+          },
+          "oracle_code": {
+            "strict_next_token_accuracy": 1.0,
+            "four_color_accuracy": 1.0,
+            "mean_true_color_margin": 7.3563
+          },
+          "dictionary_context": {
+            "strict_next_token_accuracy": 0.675,
+            "four_color_accuracy": 1.0,
+            "mean_true_color_margin": 6.7031
+          }
+        },
+        "live_correct_stale_wrong_rate": 0.95,
+        "live_correct_last_only_wrong_rate": 0.65
+      }
+    },
+    {
+      "slots": 8,
+      "delay": 100,
+      "summary": {
+        "trials": 40,
+        "scores": {
+          "live": {
+            "strict_next_token_accuracy": 1.0,
+            "four_color_accuracy": 1.0,
+            "mean_true_color_margin": 4.9516
+          },
+          "erased": {
+            "strict_next_token_accuracy": 0.1,
+            "four_color_accuracy": 0.35,
+            "mean_true_color_margin": -0.7238
+          },
+          "stale": {
+            "strict_next_token_accuracy": 0.0,
+            "four_color_accuracy": 0.0,
+            "mean_true_color_margin": -5.5
+          },
+          "wrong_address": {
+            "strict_next_token_accuracy": 0.025,
+            "four_color_accuracy": 0.025,
+            "mean_true_color_margin": -7.2609
+          },
+          "last_only": {
+            "strict_next_token_accuracy": 0.15,
+            "four_color_accuracy": 0.15,
+            "mean_true_color_margin": -6.3672
+          },
+          "oracle_code": {
+            "strict_next_token_accuracy": 1.0,
+            "four_color_accuracy": 1.0,
+            "mean_true_color_margin": 7.6094
+          },
+          "dictionary_context": {
+            "strict_next_token_accuracy": 0.725,
+            "four_color_accuracy": 1.0,
+            "mean_true_color_margin": 6.6
+          }
+        },
+        "live_correct_stale_wrong_rate": 1.0,
+        "live_correct_last_only_wrong_rate": 0.85
+      }
+    },
+    {
+      "slots": 8,
+      "delay": 500,
+      "summary": {
+        "trials": 40,
+        "scores": {
+          "live": {
+            "strict_next_token_accuracy": 0.975,
+            "four_color_accuracy": 0.975,
+            "mean_true_color_margin": 5.4844
+          },
+          "erased": {
+            "strict_next_token_accuracy": 0.1,
+            "four_color_accuracy": 0.275,
+            "mean_true_color_margin": -0.7832
+          },
+          "stale": {
+            "strict_next_token_accuracy": 0.025,
+            "four_color_accuracy": 0.025,
+            "mean_true_color_margin": -5.9625
+          },
+          "wrong_address": {
+            "strict_next_token_accuracy": 0.0,
+            "four_color_accuracy": 0.0,
+            "mean_true_color_margin": -7.6312
+          },
+          "last_only": {
+            "strict_next_token_accuracy": 0.45,
+            "four_color_accuracy": 0.45,
+            "mean_true_color_margin": -1.2453
+          },
+          "oracle_code": {
+            "strict_next_token_accuracy": 1.0,
+            "four_color_accuracy": 1.0,
+            "mean_true_color_margin": 7.3969
+          },
+          "dictionary_context": {
+            "strict_next_token_accuracy": 0.75,
+            "four_color_accuracy": 1.0,
+            "mean_true_color_margin": 6.55
+          }
+        },
+        "live_correct_stale_wrong_rate": 0.95,
+        "live_correct_last_only_wrong_rate": 0.55
+      }
+    },
+    {
+      "slots": 16,
+      "delay": 10,
+      "summary": {
+        "trials": 40,
+        "scores": {
+          "live": {
+            "strict_next_token_accuracy": 0.9,
+            "four_color_accuracy": 0.925,
+            "mean_true_color_margin": 4.55
+          },
+          "erased": {
+            "strict_next_token_accuracy": 0.05,
+            "four_color_accuracy": 0.275,
+            "mean_true_color_margin": -0.5969
+          },
+          "stale": {
+            "strict_next_token_accuracy": 0.0,
+            "four_color_accuracy": 0.025,
+            "mean_true_color_margin": -5.4672
+          },
+          "wrong_address": {
+            "strict_next_token_accuracy": 0.0,
+            "four_color_accuracy": 0.0,
+            "mean_true_color_margin": -6.15
+          },
+          "last_only": {
+            "strict_next_token_accuracy": 0.175,
+            "four_color_accuracy": 0.175,
+            "mean_true_color_margin": -5.7375
+          },
+          "oracle_code": {
+            "strict_next_token_accuracy": 1.0,
+            "four_color_accuracy": 1.0,
+            "mean_true_color_margin": 7.2703
+          },
+          "dictionary_context": {
+            "strict_next_token_accuracy": 0.65,
+            "four_color_accuracy": 1.0,
+            "mean_true_color_margin": 6.5828
+          }
+        },
+        "live_correct_stale_wrong_rate": 0.9,
+        "live_correct_last_only_wrong_rate": 0.725
+      }
+    },
+    {
+      "slots": 16,
+      "delay": 50,
+      "summary": {
+        "trials": 40,
+        "scores": {
+          "live": {
+            "strict_next_token_accuracy": 0.85,
+            "four_color_accuracy": 0.875,
+            "mean_true_color_margin": 3.9234
+          },
+          "erased": {
+            "strict_next_token_accuracy": 0.1,
+            "four_color_accuracy": 0.275,
+            "mean_true_color_margin": -0.6934
+          },
+          "stale": {
+            "strict_next_token_accuracy": 0.075,
+            "four_color_accuracy": 0.075,
+            "mean_true_color_margin": -4.4297
+          },
+          "wrong_address": {
+            "strict_next_token_accuracy": 0.025,
+            "four_color_accuracy": 0.05,
+            "mean_true_color_margin": -6.7859
+          },
+          "last_only": {
+            "strict_next_token_accuracy": 0.125,
+            "four_color_accuracy": 0.125,
+            "mean_true_color_margin": -6.5766
+          },
+          "oracle_code": {
+            "strict_next_token_accuracy": 1.0,
+            "four_color_accuracy": 1.0,
+            "mean_true_color_margin": 7.3688
+          },
+          "dictionary_context": {
+            "strict_next_token_accuracy": 0.725,
+            "four_color_accuracy": 1.0,
+            "mean_true_color_margin": 6.6953
+          }
+        },
+        "live_correct_stale_wrong_rate": 0.775,
+        "live_correct_last_only_wrong_rate": 0.775
+      }
+    },
+    {
+      "slots": 16,
+      "delay": 100,
+      "summary": {
+        "trials": 40,
+        "scores": {
+          "live": {
+            "strict_next_token_accuracy": 0.925,
+            "four_color_accuracy": 0.925,
+            "mean_true_color_margin": 3.7719
+          },
+          "erased": {
+            "strict_next_token_accuracy": 0.025,
+            "four_color_accuracy": 0.3,
+            "mean_true_color_margin": -0.5563
+          },
+          "stale": {
+            "strict_next_token_accuracy": 0.025,
+            "four_color_accuracy": 0.05,
+            "mean_true_color_margin": -4.6945
+          },
+          "wrong_address": {
+            "strict_next_token_accuracy": 0.0,
+            "four_color_accuracy": 0.0,
+            "mean_true_color_margin": -7.5484
+          },
+          "last_only": {
+            "strict_next_token_accuracy": 0.275,
+            "four_color_accuracy": 0.275,
+            "mean_true_color_margin": -4.3406
+          },
+          "oracle_code": {
+            "strict_next_token_accuracy": 1.0,
+            "four_color_accuracy": 1.0,
+            "mean_true_color_margin": 7.0031
+          },
+          "dictionary_context": {
+            "strict_next_token_accuracy": 0.7,
+            "four_color_accuracy": 1.0,
+            "mean_true_color_margin": 6.4469
+          }
+        },
+        "live_correct_stale_wrong_rate": 0.9,
+        "live_correct_last_only_wrong_rate": 0.675
+      }
+    },
+    {
+      "slots": 16,
+      "delay": 500,
+      "summary": {
+        "trials": 40,
+        "scores": {
+          "live": {
+            "strict_next_token_accuracy": 0.675,
+            "four_color_accuracy": 0.675,
+            "mean_true_color_margin": 2.4516
+          },
+          "erased": {
+            "strict_next_token_accuracy": 0.025,
+            "four_color_accuracy": 0.225,
+            "mean_true_color_margin": -0.7961
+          },
+          "stale": {
+            "strict_next_token_accuracy": 0.025,
+            "four_color_accuracy": 0.025,
+            "mean_true_color_margin": -4.5504
+          },
+          "wrong_address": {
+            "strict_next_token_accuracy": 0.05,
+            "four_color_accuracy": 0.05,
+            "mean_true_color_margin": -6.5609
+          },
+          "last_only": {
+            "strict_next_token_accuracy": 0.3,
+            "four_color_accuracy": 0.3,
+            "mean_true_color_margin": -3.8781
+          },
+          "oracle_code": {
+            "strict_next_token_accuracy": 1.0,
+            "four_color_accuracy": 1.0,
+            "mean_true_color_margin": 7.0812
+          },
+          "dictionary_context": {
+            "strict_next_token_accuracy": 0.775,
+            "four_color_accuracy": 1.0,
+            "mean_true_color_margin": 6.6984
+          }
+        },
+        "live_correct_stale_wrong_rate": 0.65,
+        "live_correct_last_only_wrong_rate": 0.55
+      }
+    },
+    {
+      "slots": 32,
+      "delay": 10,
+      "summary": {
+        "trials": 40,
+        "scores": {
+          "live": {
+            "strict_next_token_accuracy": 0.85,
+            "four_color_accuracy": 0.9,
+            "mean_true_color_margin": 3.9391
+          },
+          "erased": {
+            "strict_next_token_accuracy": 0.0,
+            "four_color_accuracy": 0.275,
+            "mean_true_color_margin": -0.9082
+          },
+          "stale": {
+            "strict_next_token_accuracy": 0.05,
+            "four_color_accuracy": 0.05,
+            "mean_true_color_margin": -4.4469
+          },
+          "wrong_address": {
+            "strict_next_token_accuracy": 0.05,
+            "four_color_accuracy": 0.05,
+            "mean_true_color_margin": -3.8047
+          },
+          "last_only": {
+            "strict_next_token_accuracy": 0.3,
+            "four_color_accuracy": 0.3,
+            "mean_true_color_margin": -3.3609
+          },
+          "oracle_code": {
+            "strict_next_token_accuracy": 1.0,
+            "four_color_accuracy": 1.0,
+            "mean_true_color_margin": 7.0031
+          },
+          "dictionary_context": {
+            "strict_next_token_accuracy": 0.6,
+            "four_color_accuracy": 1.0,
+            "mean_true_color_margin": 6.7219
+          }
+        },
+        "live_correct_stale_wrong_rate": 0.8,
+        "live_correct_last_only_wrong_rate": 0.625
+      }
+    },
+    {
+      "slots": 32,
+      "delay": 50,
+      "summary": {
+        "trials": 40,
+        "scores": {
+          "live": {
+            "strict_next_token_accuracy": 0.475,
+            "four_color_accuracy": 0.6,
+            "mean_true_color_margin": 1.3828
+          },
+          "erased": {
+            "strict_next_token_accuracy": 0.025,
+            "four_color_accuracy": 0.2,
+            "mean_true_color_margin": -0.7242
+          },
+          "stale": {
+            "strict_next_token_accuracy": 0.1,
+            "four_color_accuracy": 0.15,
+            "mean_true_color_margin": -2.425
+          },
+          "wrong_address": {
+            "strict_next_token_accuracy": 0.025,
+            "four_color_accuracy": 0.025,
+            "mean_true_color_margin": -6.4086
+          },
+          "last_only": {
+            "strict_next_token_accuracy": 0.275,
+            "four_color_accuracy": 0.275,
+            "mean_true_color_margin": -4.1719
+          },
+          "oracle_code": {
+            "strict_next_token_accuracy": 1.0,
+            "four_color_accuracy": 1.0,
+            "mean_true_color_margin": 6.3797
+          },
+          "dictionary_context": {
+            "strict_next_token_accuracy": 0.825,
+            "four_color_accuracy": 1.0,
+            "mean_true_color_margin": 7.0344
+          }
+        },
+        "live_correct_stale_wrong_rate": 0.375,
+        "live_correct_last_only_wrong_rate": 0.35
+      }
+    },
+    {
+      "slots": 32,
+      "delay": 100,
+      "summary": {
+        "trials": 40,
+        "scores": {
+          "live": {
+            "strict_next_token_accuracy": 0.5,
+            "four_color_accuracy": 0.7,
+            "mean_true_color_margin": 1.2613
+          },
+          "erased": {
+            "strict_next_token_accuracy": 0.05,
+            "four_color_accuracy": 0.225,
+            "mean_true_color_margin": -0.7023
+          },
+          "stale": {
+            "strict_next_token_accuracy": 0.1,
+            "four_color_accuracy": 0.175,
+            "mean_true_color_margin": -2.393
+          },
+          "wrong_address": {
+            "strict_next_token_accuracy": 0.15,
+            "four_color_accuracy": 0.15,
+            "mean_true_color_margin": -4.6969
+          },
+          "last_only": {
+            "strict_next_token_accuracy": 0.375,
+            "four_color_accuracy": 0.375,
+            "mean_true_color_margin": -3.0805
+          },
+          "oracle_code": {
+            "strict_next_token_accuracy": 1.0,
+            "four_color_accuracy": 1.0,
+            "mean_true_color_margin": 6.6312
+          },
+          "dictionary_context": {
+            "strict_next_token_accuracy": 0.575,
+            "four_color_accuracy": 1.0,
+            "mean_true_color_margin": 6.7797
+          }
+        },
+        "live_correct_stale_wrong_rate": 0.4,
+        "live_correct_last_only_wrong_rate": 0.325
+      }
+    },
+    {
+      "slots": 32,
+      "delay": 500,
+      "summary": {
+        "trials": 40,
+        "scores": {
+          "live": {
+            "strict_next_token_accuracy": 0.375,
+            "four_color_accuracy": 0.6,
+            "mean_true_color_margin": 0.0721
+          },
+          "erased": {
+            "strict_next_token_accuracy": 0.075,
+            "four_color_accuracy": 0.375,
+            "mean_true_color_margin": -0.534
+          },
+          "stale": {
+            "strict_next_token_accuracy": 0.025,
+            "four_color_accuracy": 0.075,
+            "mean_true_color_margin": -2.6479
+          },
+          "wrong_address": {
+            "strict_next_token_accuracy": 0.125,
+            "four_color_accuracy": 0.15,
+            "mean_true_color_margin": -4.7516
+          },
+          "last_only": {
+            "strict_next_token_accuracy": 0.225,
+            "four_color_accuracy": 0.225,
+            "mean_true_color_margin": -4.8078
+          },
+          "oracle_code": {
+            "strict_next_token_accuracy": 1.0,
+            "four_color_accuracy": 1.0,
+            "mean_true_color_margin": 6.5703
+          },
+          "dictionary_context": {
+            "strict_next_token_accuracy": 0.725,
+            "four_color_accuracy": 1.0,
+            "mean_true_color_margin": 7.0219
+          }
+        },
+        "live_correct_stale_wrong_rate": 0.35,
+        "live_correct_last_only_wrong_rate": 0.225
+      }
+    }
+  ],
+  "engineering_gates": {
+    "slots_16_delay_100": {
+      "pass": true,
+      "live_accuracy": 0.925,
+      "last_only_accuracy": 0.275,
+      "required_live": 0.8,
+      "required_advantage": 0.3
+    },
+    "slots_16_delay_500": {
+      "pass": true,
+      "live_accuracy": 0.675,
+      "last_only_accuracy": 0.3,
+      "required_live": 0.6,
+      "required_advantage": 0.3
+    }
+  },
+  "examples": [
+    {
+      "slots": 8,
+      "delay": 10,
+      "prompt": "Give only the color of Uma. Answer:",
+      "previous": "yellow",
+      "correct": "red",
+      "last_event": [
+        "Quinn",
+        "red"
+      ],
+      "color_guesses": {
+        "live": "red",
+        "erased": "blue",
+        "stale": "yellow",
+        "wrong_address": "blue",
+        "last_only": "red",
+        "oracle_code": "red",
+        "dictionary_context": "red"
+      }
+    },
+    {
+      "slots": 8,
+      "delay": 10,
+      "prompt": "What color is Wendy? Answer:",
+      "previous": "blue",
+      "correct": "red",
+      "last_event": [
+        "Ruth",
+        "yellow"
+      ],
+      "color_guesses": {
+        "live": "red",
+        "erased": "red",
+        "stale": "blue",
+        "wrong_address": "green",
+        "last_only": "yellow",
+        "oracle_code": "red",
+        "dictionary_context": "red"
+      }
+    },
+    {
+      "slots": 8,
+      "delay": 50,
+      "prompt": "What color is Wendy? Answer:",
+      "previous": "yellow",
+      "correct": "green",
+      "last_event": [
+        "Xavier",
+        "red"
+      ],
+      "color_guesses": {
+        "live": "green",
+        "erased": "red",
+        "stale": "green",
+        "wrong_address": "yellow",
+        "last_only": "red",
+        "oracle_code": "green",
+        "dictionary_context": "green"
+      }
+    },
+    {
+      "slots": 8,
+      "delay": 50,
+      "prompt": "Question: What is the color of Quinn? Answer:",
+      "previous": "blue",
+      "correct": "red",
+      "last_event": [
+        "Xavier",
+        "red"
+      ],
+      "color_guesses": {
+        "live": "red",
+        "erased": "blue",
+        "stale": "blue",
+        "wrong_address": "yellow",
+        "last_only": "red",
+        "oracle_code": "red",
+        "dictionary_context": "red"
+      }
+    },
+    {
+      "slots": 8,
+      "delay": 100,
+      "prompt": "What color is Wendy? Answer:",
+      "previous": "blue",
+      "correct": "red",
+      "last_event": [
+        "Quinn",
+        "yellow"
+      ],
+      "color_guesses": {
+        "live": "red",
+        "erased": "red",
+        "stale": "blue",
+        "wrong_address": "yellow",
+        "last_only": "yellow",
+        "oracle_code": "red",
+        "dictionary_context": "red"
+      }
+    },
+    {
+      "slots": 8,
+      "delay": 100,
+      "prompt": "Question: What is the color of Tessa? Answer:",
+      "previous": "green",
+      "correct": "red",
+      "last_event": [
+        "Ruth",
+        "red"
+      ],
+      "color_guesses": {
+        "live": "red",
+        "erased": "red",
+        "stale": "green",
+        "wrong_address": "blue",
+        "last_only": "red",
+        "oracle_code": "red",
+        "dictionary_context": "red"
+      }
+    },
+    {
+      "slots": 8,
+      "delay": 500,
+      "prompt": "What color is Wendy? Answer:",
+      "previous": "blue",
+      "correct": "red",
+      "last_event": [
+        "Xavier",
+        "blue"
+      ],
+      "color_guesses": {
+        "live": "red",
+        "erased": "red",
+        "stale": "blue",
+        "wrong_address": "yellow",
+        "last_only": "blue",
+        "oracle_code": "red",
+        "dictionary_context": "red"
+      }
+    },
+    {
+      "slots": 8,
+      "delay": 500,
+      "prompt": "Question: What is the color of Xavier? Answer:",
+      "previous": "red",
+      "correct": "blue",
+      "last_event": [
+        "Ruth",
+        "red"
+      ],
+      "color_guesses": {
+        "live": "blue",
+        "erased": "blue",
+        "stale": "red",
+        "wrong_address": "red",
+        "last_only": "red",
+        "oracle_code": "blue",
+        "dictionary_context": "blue"
+      }
+    },
+    {
+      "slots": 16,
+      "delay": 10,
+      "prompt": "What color is Aino? Answer:",
+      "previous": "red",
+      "correct": "green",
+      "last_event": [
+        "Xavier",
+        "blue"
+      ],
+      "color_guesses": {
+        "live": "green",
+        "erased": "red",
+        "stale": "red",
+        "wrong_address": "red",
+        "last_only": "blue",
+        "oracle_code": "green",
+        "dictionary_context": "green"
+      }
+    },
+    {
+      "slots": 16,
+      "delay": 10,
+      "prompt": "What color is Uma? Answer:",
+      "previous": "red",
+      "correct": "yellow",
+      "last_event": [
+        "Sven",
+        "green"
+      ],
+      "color_guesses": {
+        "live": "yellow",
+        "erased": "red",
+        "stale": "red",
+        "wrong_address": "blue",
+        "last_only": "green",
+        "oracle_code": "yellow",
+        "dictionary_context": "yellow"
+      }
+    },
+    {
+      "slots": 16,
+      "delay": 50,
+      "prompt": "Question: What is the color of Cleo? Answer:",
+      "previous": "red",
+      "correct": "yellow",
+      "last_event": [
+        "Dara",
+        "green"
+      ],
+      "color_guesses": {
+        "live": "yellow",
+        "erased": "blue",
+        "stale": "red",
+        "wrong_address": "blue",
+        "last_only": "green",
+        "oracle_code": "yellow",
+        "dictionary_context": "yellow"
+      }
+    },
+    {
+      "slots": 16,
+      "delay": 50,
+      "prompt": "Question: What is the color of Yara? Answer:",
+      "previous": "green",
+      "correct": "blue",
+      "last_event": [
+        "Eero",
+        "yellow"
+      ],
+      "color_guesses": {
+        "live": "blue",
+        "erased": "yellow",
+        "stale": "green",
+        "wrong_address": "red",
+        "last_only": "yellow",
+        "oracle_code": "blue",
+        "dictionary_context": "blue"
+      }
+    },
+    {
+      "slots": 16,
+      "delay": 100,
+      "prompt": "What color is Faye? Answer:",
+      "previous": "red",
+      "correct": "green",
+      "last_event": [
+        "Sven",
+        "green"
+      ],
+      "color_guesses": {
+        "live": "green",
+        "erased": "red",
+        "stale": "red",
+        "wrong_address": "red",
+        "last_only": "green",
+        "oracle_code": "green",
+        "dictionary_context": "green"
+      }
+    },
+    {
+      "slots": 16,
+      "delay": 100,
+      "prompt": "Give only the color of Faye. Answer:",
+      "previous": "yellow",
+      "correct": "red",
+      "last_event": [
+        "Aino",
+        "blue"
+      ],
+      "color_guesses": {
+        "live": "red",
+        "erased": "blue",
+        "stale": "blue",
+        "wrong_address": "blue",
+        "last_only": "blue",
+        "oracle_code": "red",
+        "dictionary_context": "red"
+      }
+    },
+    {
+      "slots": 16,
+      "delay": 500,
+      "prompt": "What color is Faye? Answer:",
+      "previous": "red",
+      "correct": "yellow",
+      "last_event": [
+        "Bela",
+        "red"
+      ],
+      "color_guesses": {
+        "live": "yellow",
+        "erased": "red",
+        "stale": "red",
+        "wrong_address": "green",
+        "last_only": "red",
+        "oracle_code": "yellow",
+        "dictionary_context": "yellow"
+      }
+    },
+    {
+      "slots": 16,
+      "delay": 500,
+      "prompt": "Question: What is the color of Yara? Answer:",
+      "previous": "blue",
+      "correct": "green",
+      "last_event": [
+        "Cleo",
+        "blue"
+      ],
+      "color_guesses": {
+        "live": "green",
+        "erased": "yellow",
+        "stale": "blue",
+        "wrong_address": "yellow",
+        "last_only": "blue",
+        "oracle_code": "green",
+        "dictionary_context": "green"
+      }
+    },
+    {
+      "slots": 32,
+      "delay": 10,
+      "prompt": "Question: What is the color of Novice003? Answer:",
+      "previous": "blue",
+      "correct": "yellow",
+      "last_event": [
+        "Novice007",
+        "red"
+      ],
+      "color_guesses": {
+        "live": "yellow",
+        "erased": "blue",
+        "stale": "blue",
+        "wrong_address": "red",
+        "last_only": "red",
+        "oracle_code": "yellow",
+        "dictionary_context": "yellow"
+      }
+    },
+    {
+      "slots": 32,
+      "delay": 10,
+      "prompt": "Give only the color of Bela. Answer:",
+      "previous": "blue",
+      "correct": "yellow",
+      "last_event": [
+        "Novice009",
+        "green"
+      ],
+      "color_guesses": {
+        "live": "yellow",
+        "erased": "blue",
+        "stale": "blue",
+        "wrong_address": "green",
+        "last_only": "green",
+        "oracle_code": "yellow",
+        "dictionary_context": "yellow"
+      }
+    },
+    {
+      "slots": 32,
+      "delay": 50,
+      "prompt": "Give only the color of Novice010. Answer:",
+      "previous": "red",
+      "correct": "yellow",
+      "last_event": [
+        "Novice005",
+        "red"
+      ],
+      "color_guesses": {
+        "live": "red",
+        "erased": "blue",
+        "stale": "red",
+        "wrong_address": "green",
+        "last_only": "red",
+        "oracle_code": "yellow",
+        "dictionary_context": "yellow"
+      }
+    },
+    {
+      "slots": 32,
+      "delay": 50,
+      "prompt": "Give only the color of Ruth. Answer:",
+      "previous": "blue",
+      "correct": "red",
+      "last_event": [
+        "Cleo",
+        "blue"
+      ],
+      "color_guesses": {
+        "live": "blue",
+        "erased": "blue",
+        "stale": "blue",
+        "wrong_address": "blue",
+        "last_only": "blue",
+        "oracle_code": "red",
+        "dictionary_context": "red"
+      }
+    },
+    {
+      "slots": 32,
+      "delay": 100,
+      "prompt": "Give only the color of Novice007. Answer:",
+      "previous": "yellow",
+      "correct": "green",
+      "last_event": [
+        "Yara",
+        "yellow"
+      ],
+      "color_guesses": {
+        "live": "green",
+        "erased": "blue",
+        "stale": "yellow",
+        "wrong_address": "green",
+        "last_only": "yellow",
+        "oracle_code": "green",
+        "dictionary_context": "green"
+      }
+    },
+    {
+      "slots": 32,
+      "delay": 100,
+      "prompt": "What color is Dara? Answer:",
+      "previous": "red",
+      "correct": "yellow",
+      "last_event": [
+        "Novice008",
+        "yellow"
+      ],
+      "color_guesses": {
+        "live": "yellow",
+        "erased": "red",
+        "stale": "red",
+        "wrong_address": "blue",
+        "last_only": "yellow",
+        "oracle_code": "yellow",
+        "dictionary_context": "yellow"
+      }
+    },
+    {
+      "slots": 32,
+      "delay": 500,
+      "prompt": "Question: What is the color of Novice013? Answer:",
+      "previous": "red",
+      "correct": "yellow",
+      "last_event": [
+        "Sven",
+        "green"
+      ],
+      "color_guesses": {
+        "live": "blue",
+        "erased": "blue",
+        "stale": "blue",
+        "wrong_address": "red",
+        "last_only": "green",
+        "oracle_code": "yellow",
+        "dictionary_context": "yellow"
+      }
+    },
+    {
+      "slots": 32,
+      "delay": 500,
+      "prompt": "Give only the color of Faye. Answer:",
+      "previous": "yellow",
+      "correct": "blue",
+      "last_event": [
+        "Yara",
+        "green"
+      ],
+      "color_guesses": {
+        "live": "blue",
+        "erased": "blue",
+        "stale": "red",
+        "wrong_address": "yellow",
+        "last_only": "green",
+        "oracle_code": "blue",
+        "dictionary_context": "blue"
+      }
+    }
+  ],
+  "limitations": "Small artificial four-color vocabulary and explicit hashed addresses. Gate 2 adapter is fixed; no raw-language semantic observation parser or evidence of efficiency over a dictionary. Each episode resets memory. Evaluator retains events only for control replay; online LiveMemory stores no event list. Additional slot names are synthetic."
+}
