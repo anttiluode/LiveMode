@@ -18,6 +18,24 @@ observation (key, value)
      W_(t+1)                         next-token logits
 ```
 
+## Gate 3 — query after interference (frozen adapter)
+
+Gate 2 achieved perfect accuracy on a task where it was always asked about the most recent write. Gate 3 removes that shortcut: four possible facts are rewritten, followed by 10/50/100/500 unrelated updates, and **only after the stream** is a random one of those facts queried. The 1,024-byte state keeps changing online, while both Qwen and the trained Gate 2 lift stay frozen.
+
+The seven arms include current memory, erased memory, a counterfactual missing the queried rewrite, wrong address, last-observation-only, exact true-color code and dictionary fact in prompt. We report full-vocabulary next-token accuracy (primary), four-color accuracy and margins for 8/16/32 addresses. The original checkpoint is reused without further training. **No Qwen Gate 3 results are claimed yet.**
+
+On Windows:
+
+```bat
+git pull
+python3.13 -m unittest discover -s tests -v
+python3.13 -m live_mode.hf_gate3 --dry-run
+python3.13 -m live_mode.hf_gate3 --slots 16 --delays 100,500 --trials 4 --seeds 281828 --report runs/hf_gate3_pilot.json
+python3.13 -m live_mode.hf_gate3 --trials 20 --report runs/hf_gate3_result.json
+```
+
+See [the frozen Gate 3 protocol](docs/GATE3.md). The larger grid is a deliberate memory-capacity stress test; this remains an artificial four-color task with explicit address binding, and indexed dictionaries are more efficient for such facts.
+
 ## Run the live flow (CPU, Python 3.10+, NumPy)
 
 ```bash
