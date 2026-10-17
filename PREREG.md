@@ -1,6 +1,6 @@
 # Gate 1: continuous local read/write, with late unpredictable questions
 
-**Locked design before interpreting the reported outcomes.** The experiment is intentionally synthetic and deliberately gives the writer explicit keys and ground-truth values. It does not test semantic understanding or transformer quality.
+**Development protocol, recorded after the first exploratory run. Not a prospective preregistration.** The experiment is intentionally synthetic and deliberately gives the writer explicit keys and ground-truth values. It does not test semantic understanding or transformer quality.
 
 ## Task
 
@@ -20,7 +20,7 @@
 
 Metric: average per-trial exact value accuracy, plus standard deviation across 200 trials. All models use the same streams and no test labels are fed back after late questions.
 
-## Predictions, falsifiers and claims
+## Expectations, falsifiers and claims
 
 - Delta > frozen and Hebb under repeated overwrites. If it fails, the basic implementation has no case here.
 - Correctness under exact dictionary is 100%; **this deliberately prevents any claim of state-efficiency advantage** for delta memory.
