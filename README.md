@@ -60,7 +60,7 @@ python -m unittest discover -s tests -v
 python benchmarks/run.py
 ```
 
-Protocol frozen in `PREREG.md`: 5 seeds × 40 trials; 12 independently addressed slots; 16 possible categorical values; 96 random updates per trial, and **only then** unpredictable, shuffled queries. The writer receives the current address and actual value at each update, not the future question. After any slot is overwritten, its earlier value is now wrong.
+Development protocol recorded in `PREREG.md` (not prospectively preregistered): 5 seeds × 40 trials; 12 independently addressed slots; 16 possible categorical values; 96 random updates per trial, and **only then** unpredictable, shuffled queries. The writer receives the current address and actual value at each update, not the future question. After any slot is overwritten, its earlier value is now wrong.
 
 Local development run (NumPy; run the command to reproduce; numbers may vary slightly by version):
 
