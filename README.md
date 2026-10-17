@@ -102,3 +102,16 @@ Gate 3: mix correlated and previously unseen entity relations, conflicting evide
 - Martin-Burgos et al. (2026), [*Action potential waveforms are state-dependent*](https://doi.org/10.64898/2026.09.15.751814): evidence for history-dependent biological waveforms, **not** validation of this artificial learning rule.
 
 MIT licensed (see repository LICENSE).
+
+## Gate 2: train the live-memory-to-Qwen interface (new; Qwen run pending)
+
+The original random projection moved Qwen logits but did not change its chosen next token. **Gate 2 trains only a small residual-stream lift**, with Qwen fully frozen, using short read-then-write experience streams. Train names and held-out test names do not overlap. The test changes one color at a known address, then asks an unpredictable late question. The operator keeps only **1,024 bytes** (4 colors × 64 address dimensions, float32), with a fixed supplied symbolic address binder.
+
+Run on your RTX 3060:
+
+```bat
+python3.13 -m pip install -e ".[transformer]" accelerate
+python3.13 -m live_mode.hf_gate2 --model Qwen/Qwen2.5-0.5B-Instruct --layer 12 --steps 300 --trials 80
+```
+
+Outputs: `runs/hf_gate2_adapter.pt` and `runs/hf_gate2_result.json`. The report includes strict full-vocabulary next-token accuracy, four-color restricted accuracy, stale/erased/wrong-address and oracle controls, plus a dictionary-in-context baseline. See [Gate 2 protocol](docs/GATE2.md). **The Qwen accuracy result has not been measured yet.** Passing would demonstrate a trained interface on this simple synthetic task, not general semantic learning or a win over retrieval.
