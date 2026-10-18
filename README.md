@@ -133,3 +133,18 @@ python3.13 -m live_mode.hf_gate2 --model Qwen/Qwen2.5-0.5B-Instruct --layer 12 -
 ```
 
 Outputs: `runs/hf_gate2_adapter.pt` and `runs/hf_gate2_result.json`. The report includes strict full-vocabulary next-token accuracy, four-color restricted accuracy, stale/erased/wrong-address and oracle controls, plus a dictionary-in-context baseline. See [Gate 2 protocol](docs/GATE2.md). **The Qwen accuracy result has not been measured yet.** Passing would demonstrate a trained interface on this simple synthetic task, not general semantic learning or a win over retrieval.
+
+
+## Gate 4 — Reader alignment after interference (GPU results pending)
+
+Gate 4 compares the original Gate 2 reader with two equally trained alternatives: extra clean training and interference-heavy training. The Qwen backbone stays frozen and the per-episode memory remains **1,024 bytes**. It separately measures direct-matrix color recall, and optionally compares hash keys with raw and mean-centered Qwen activation-derived keys. Neither approach implements the Jacobian lens or autonomous language fact extraction.
+
+Full frozen design, controls, limits and commands: [Gate 4 protocol](docs/GATE4.md).
+
+Windows quick check: `git pull`, `python3.13 -m unittest discover -s tests -v`, then `python3.13 -m live_mode.hf_gate4 --dry-run`.
+
+Short GPU pilot: `python3.13 -m live_mode.hf_gate4 --steps 60 --trials 2 --seeds 813887 --report runs/hf_gate4_pilot.json --reader-checkpoint runs/hf_gate4_pilot_reader.pt --clean-checkpoint runs/hf_gate4_pilot_clean.pt`.
+
+Full experiment: `python3.13 -m live_mode.hf_gate4 --steps 300 --trials 20 --native-keys --report runs/hf_gate4_result.json`.
+
+**No Gate 4 Qwen results are known yet.** This test deliberately allows failure: better decoding cannot recover information destroyed in the memory matrix. The exact dictionary remains the stronger simplicity/efficiency baseline for these tiny categorical tasks.

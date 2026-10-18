@@ -15,3 +15,5 @@ jobs:
       - run: python benchmarks/run.py
 
       - run: python -m live_mode.hf_gate3 --dry-run
+
+      - run: python -m live_mode.hf_gate4 --dry-run
